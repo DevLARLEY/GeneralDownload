@@ -1,3 +1,7 @@
+<p align="center"><img src="icon.png"></p>
+<h3 align="center">GeneralDownload<br/>
+<sup>An advanced yt-dlp interface</sup></h3>
+
 ## Features:
 
 - [x] Concurrent downloads
