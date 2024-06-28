@@ -15,7 +15,7 @@
 
 ## Requirements:
 
-* [Python 3.8+](https://www.python.org/)
+* [Python 3.10+](https://www.python.org/)
 * [ffmpeg](https://www.gyan.dev/ffmpeg/builds/)
 
 ## Installation
