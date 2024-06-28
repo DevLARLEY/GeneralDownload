@@ -1,4 +1,4 @@
-<p align="center"><img src="icon.png"></p>
+<p align="center"><img src="https://github.com/DevLARLEY/GeneralDownload/assets/121249322/099197d4-3477-4a81-954e-1f35166d7ac8"></p>
 <h3 align="center">GeneralDownload<br/>
 <sup>An advanced yt-dlp interface</sup></h3>
 
