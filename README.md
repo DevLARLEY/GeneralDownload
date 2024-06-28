@@ -20,7 +20,7 @@
 
 ## Installation
 
-1. Install Python 3.8+
+1. Install Python 3.10+
 2. Place ffmpeg either in your PATH or the current working directory
 3. Install the required modules: `pip install -r requirements.txt`
 
