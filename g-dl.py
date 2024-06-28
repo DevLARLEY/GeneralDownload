@@ -26,10 +26,6 @@ def icon():
     return QIcon(QPixmap("icon.png"))
 
 
-def clean_name(s):
-    return ''.join(filter(lambda c: 31 < ord(c) < 127, s))
-
-
 def format_seconds(s):
     m, s = divmod(s, 60)
     h, m = divmod(m, 60)
