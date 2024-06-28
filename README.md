@@ -11,7 +11,7 @@
 - [x] Window state saving
 - [x] [Supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
       
-![Screenshot 2024-06-27 174432](https://github.com/DevLARLEY/GeneralDownload/assets/121249322/0ff49d0e-1282-45b2-b0c1-50b6d6af1d8b)
+![Preview](https://github.com/DevLARLEY/GeneralDownload/assets/121249322/0ff49d0e-1282-45b2-b0c1-50b6d6af1d8b)
 
 ## Requirements:
 
