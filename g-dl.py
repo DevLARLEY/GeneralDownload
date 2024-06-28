@@ -48,6 +48,8 @@ class Stream(QWidget):
     ):
         super().__init__()
 
+        self.title = None
+
         self.resize(600, 300)
         self.setWindowIcon(icon())
         self.setWindowTitle("General Download/Stream")
@@ -150,7 +152,8 @@ class Stream(QWidget):
                         ]
                     )
                 ),
-                self.is_drm
+                self.is_drm,
+                self.title
             )
         )
         self.verticalLayout.addWidget(self.download)
@@ -171,6 +174,14 @@ class Stream(QWidget):
         self.audio_model.clear()
         self.audio.setModel(self.audio_model)
         self.download.setEnabled(False)
+
+        metadata["formats"] = sorted(
+            metadata["formats"],
+            key=lambda x: sum(map(lambda s: int(s) if s.isdecimal() else 0, x["resolution"].split('x'))),
+            reverse=True
+        )
+
+        self.title = metadata.get('title')
 
         if url := metadata.get('webpage_url'):
             self.url.setText(url)
@@ -299,6 +310,7 @@ class Downloader(QRunnable):
             video_id: str,
             audio_ids: list,
             is_drm: bool,
+            title: str,
             output_path: str
     ):
         super().__init__()
@@ -306,6 +318,7 @@ class Downloader(QRunnable):
         self.video_id = video_id
         self.audio_ids = audio_ids
         self.is_drm = is_drm
+        self.title = title
         self.output_path = output_path
 
         self.task_id = str(uuid.uuid4())
@@ -315,8 +328,6 @@ class Downloader(QRunnable):
 
     @pyqtSlot()
     def run(self):
-        title = yt_dlp.YoutubeDL(STANDARD_OPTIONS).extract_info(self.url, download=False).get("title", None)
-
         def log(data: dict):
             status = data.get('status')
             if status == 'error':
@@ -353,7 +364,7 @@ class Downloader(QRunnable):
                 (
                     self.task_id,
                     f"{status.capitalize()} {self.current_media_type.value}",
-                    title,
+                    self.title,
                     size,
                     progress,
                     frags,
@@ -488,10 +499,11 @@ class Main(QMainWindow):
             url: str,
             video_id: str,
             audio_ids: list,
-            is_drm: bool
+            is_drm: bool,
+            title: str | None
     ):
         self.statusbar.showMessage("Launching downloader...")
-        downloader = Downloader(url, video_id, audio_ids, is_drm, self.settings.value("output_path"))
+        downloader = Downloader(url, video_id, audio_ids, is_drm, title, self.settings.value("output_path"))
         downloader.signals.completed.connect(self.handle_complete)
         downloader.signals.started.connect(self.handle_started)
         downloader.signals.progress.connect(self.handle_progress)
