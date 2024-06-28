@@ -28,3 +28,4 @@
 
 1. Enter an output path, leave blank for the current directory
 2. Enter a URL and press 'Launch'
+3. Select a video and the desired audio streams
