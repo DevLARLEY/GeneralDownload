@@ -74,7 +74,7 @@ class Stream(QWidget):
 
         self.verticalLayout.addWidget(self.widget_2)
 
-        self.metadata_box = QGroupBox("Metadata:", self)
+        self.metadata_box = QGroupBox("Metadata", self)
         self.horizontalLayout_4 = QHBoxLayout(self.metadata_box)
 
         self.resolution_label = QLabel("Resolution:", self.metadata_box)
